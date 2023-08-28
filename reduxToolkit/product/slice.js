@@ -13,14 +13,25 @@ export const productApi = createApi({
     //   return headers;
     // },
   }),
+  tagTypes: ['Post'],
   endpoints: (builder) => ({
     getProductName: builder.query({
       query: () => `/`,
+      providesTags:['Post']
+    }),
+
+    getupdatePost: builder.mutation({
+      query: (value) => ({
+        url: `/`,
+        method: "POST",
+        body: value,
+      }),
+      invalidatesTags:['Post']
     }),
   }),
 });
 
-export const { useGetProductNameQuery } = productApi;
+export const { useGetProductNameQuery, useGetupdatePostMutation } = productApi;
 
 // setupListeners(store.dispatch)
 
